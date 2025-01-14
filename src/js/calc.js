@@ -55,3 +55,31 @@ const parseExpression = (tokens) => {
   // Start parsing with the lowest precedence level
   return parseAdditionAndSubtraction();
 };
+/**
+ * Tokenizes the input string into an array of numbers, operators, and parentheses.
+ */
+const tokenizeInput = (input) => {
+  const tokens = [];
+  let i = 0;
+
+  while (i < input.length) {
+    const char = input[i];
+    if (/\d/.test(char)) {
+      // Handle multi-digit numbers and decimals
+      let number = char;
+      while (i + 1 < input.length && /\d|\./.test(input[i + 1])) {
+        number += input[++i];
+      }
+      tokens.push(number); // Add the complete number to tokens
+    } else if (/[+\-*/()]/.test(char)) {
+      tokens.push(char); // Add operators and parentheses to tokens
+    } else if (/\s/.test(char)) {
+      // Ignore whitespace
+    } else {
+      throw new Error(`Invalid character: ${char}`); // Error for unexpected characters
+    }
+    i++;
+  }
+
+  return tokens;
+};
