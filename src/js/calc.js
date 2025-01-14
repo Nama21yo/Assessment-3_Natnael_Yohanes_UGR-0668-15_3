@@ -95,3 +95,41 @@ const calculate = (input) => {
     return `Error: ${err.message}`; // Return error message
   }
 };
+// Select all buttons and the display element
+const buttons = document.querySelectorAll("button");
+const display = document.getElementById("display");
+
+// Add event listeners to all buttons
+buttons.forEach((button) =>
+  button.addEventListener("click", () => {
+    const buttonValue = button.getAttribute("data-value");
+
+    // Reset display if there was an error in the previous calculation
+    if (isError) {
+      display.value = "";
+      isError = false;
+    }
+
+    // Clear the display when "C" (clear) button is clicked
+    if (button.id === "clear") {
+      display.value = "";
+      isError = false;
+      return;
+    }
+
+    // Calculate and display the result when "=" button is clicked
+    if (button.id === "equals") {
+      display.value = calculate(display.value);
+      return;
+    }
+
+    // Handle backspace to remove the last character
+    if (button.classList.contains("backspace")) {
+      display.value = display.value.slice(0, -1);
+      return;
+    }
+
+    // Append the button value to the display
+    display.value += buttonValue;
+  })
+);
