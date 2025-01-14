@@ -4,6 +4,25 @@
   padding: 0;
   box-sizing: border-box;
 }
+/* General styling */
+body {
+  font-family: Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #eef2f7;
+}
+
+#calculator {
+  background: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  max-width: 350px;
+  width: 100%;
+}
+
 /* Display styling */
 #display {
   width: 100%;
@@ -63,6 +82,7 @@
 .equal:hover {
   background-color: #e65022;
 }
+
 /* Responsive Design */
 @media (max-width: 480px) {
   #buttons {
