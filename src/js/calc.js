@@ -83,3 +83,15 @@ const tokenizeInput = (input) => {
 
   return tokens;
 };
+/**
+ * Calculates the result of the given mathematical input string.
+ */
+const calculate = (input) => {
+  try {
+    const tokens = tokenizeInput(input); // Convert input string into tokens
+    return parseExpression(tokens); // Parse and evaluate the tokens
+  } catch (err) {
+    isError = true; // Set error flag for handling in UI
+    return `Error: ${err.message}`; // Return error message
+  }
+};
